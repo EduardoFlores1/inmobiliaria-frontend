@@ -1,0 +1,24 @@
+table {
+  width: 100%;
+}
+
+.estado {
+  padding: 5px 10px;
+  color: white;
+}
+
+.estado-activo {
+  border-radius: var(--border-radius-badge);
+  background-color: var(--text-badge-success);
+  
+}
+.estado-inactivo {
+  border-radius: var(--border-radius-badge);
+  background-color: var(--text-badge-danger);
+}
+
+.acciones__botones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

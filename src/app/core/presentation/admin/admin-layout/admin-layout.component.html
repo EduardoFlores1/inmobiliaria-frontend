@@ -1,0 +1,37 @@
+<div class="container">
+  <section class="header">
+    <app-admin-header (open)="openDialogResponse($event)" />
+  </section>
+  <section class="sidenav">
+    <mat-drawer-container class="sidenav_container" [hasBackdrop]="true">
+      <mat-drawer class="panel" [opened]="isOpenSidenav()" #drawer mode="over">
+        <div class="cabecera">
+          <img class="cabecera__logo" src="../../../../../assets/images/logo/quevedo-logo.webp" alt="">
+          <div class="cabecera__perfil cabecera__perfil--estilo">
+            <h2>Eduardo Flores</h2>
+            <h4>Administrador</h4>
+          </div>
+        </div>
+        <div class="cuerpo">
+          <a class="cuerpo__element cuerpo__element--estilo cuerpo__element--active" routerLink="/admin/graficos" routerLinkActive='cuerpo__element--active' [routerLinkActiveOptions]="{exact : true}">
+            <mat-icon class="cuerpo__element__icon">poll</mat-icon>
+            <h3>Gráficos</h3>
+          </a>
+          <a class="cuerpo__element cuerpo__element--estilo" routerLink="/admin/empleados" routerLinkActive='cuerpo__element--active' [routerLinkActiveOptions]="{exact : true}">
+            <mat-icon class="cuerpo__element__icon">group</mat-icon>
+            <h3>Empleados</h3>
+          </a>
+          <a class="cuerpo__element cuerpo__element--estilo" routerLink="/admin/usuarios" routerLinkActive='cuerpo__element--active' [routerLinkActiveOptions]="{exact : true}">
+            <mat-icon class="cuerpo__element__icon">person</mat-icon>
+            <h3>Usuarios</h3>
+          </a>
+          <a class="cuerpo__element cuerpo__element--estilo" routerLink="/admin/clientes" routerLinkActive='cuerpo__element--active' [routerLinkActiveOptions]="{exact : true}">
+            <mat-icon class="cuerpo__element__icon">work</mat-icon>
+            <h3>Clientes</h3>
+          </a>
+        </div>
+      </mat-drawer>
+      <router-outlet />
+    </mat-drawer-container>
+  </section>
+</div>
