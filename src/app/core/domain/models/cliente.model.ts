@@ -1,4 +1,4 @@
-import { IDomainUsuario } from './usuario.entity';
+import { IDomainUsuario } from './usuario.model';
 
 export interface IDomainCreateCliente {
   usuario: IDomainUsuario;

@@ -5,7 +5,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { UsuarioEntity } from '../../../../../../domain/entities/usuario.entity';
+import { UsuarioEntity } from '../../../../../../domain/models/usuario.model';
 
 @Component({
   selector: 'app-usuario-tabla',

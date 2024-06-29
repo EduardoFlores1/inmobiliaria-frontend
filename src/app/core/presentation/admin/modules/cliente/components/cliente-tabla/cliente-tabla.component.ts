@@ -5,7 +5,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { ClienteEntity } from '../../../../../../domain/entities/cliente.entity';
+import { ClienteEntity } from '../../../../../../domain/models/cliente.model';
 
 @Component({
   selector: 'app-cliente-tabla',

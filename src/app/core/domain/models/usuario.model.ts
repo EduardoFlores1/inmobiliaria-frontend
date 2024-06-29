@@ -1,4 +1,4 @@
-import { IDomainEmpleado } from './empleado.entity';
+import { IDomainEmpleado } from './empleado.model';
 
 export interface IDomainCreateUsuario {
   empleado: IDomainEmpleado;

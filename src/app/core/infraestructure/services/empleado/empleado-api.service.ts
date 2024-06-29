@@ -1,10 +1,10 @@
 import { Observable, map, pipe } from 'rxjs';
-import { IApiEmpleado } from '../../models/empleado-api.model';
+import { IApiEmpleado } from '../../entities/empleado-api.entity';
 import { IEmpleadoApiService } from './empleado-api.interface';
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment.development';
-import { IDomainEmpleado, IDomainCreateEmpleado } from '../../../domain/entities/empleado.entity';
+import { IDomainEmpleado, IDomainCreateEmpleado } from '../../../domain/models/empleado.model';
 import { EmpleadoMapper } from '../../mappers/empleado.mapper';
 
 @Injectable({

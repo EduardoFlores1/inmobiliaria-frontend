@@ -1,5 +1,5 @@
-import { IDomainCliente } from '../../domain/entities/cliente.entity';
-import { IApiCliente } from '../models/cliente-api.model';
+import { IDomainCliente } from '../../domain/models/cliente.model';
+import { IApiCliente } from '../entities/cliente-api.entity';
 import { UsuarioMapper } from './usuario.mapper';
 
 export class ClienteMapper {

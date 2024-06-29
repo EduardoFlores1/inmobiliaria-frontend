@@ -1,5 +1,5 @@
-import { IDomainContrato } from '../../domain/entities/contrato.entity';
-import { IApiContrato } from '../models/contrato-api.model';
+import { IDomainContrato } from '../../domain/models/contrato.model';
+import { IApiContrato } from '../entities/contrato-api.entity';
 import { EmpleadoMapper } from './empleado.mapper';
 
 export class ContratoMapper {

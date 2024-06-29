@@ -1,10 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { IUsuarioApiService } from './usuario-api.interface';
 import { Observable, map } from 'rxjs';
-import { IDomainUsuario, IDomainCreateUsuario } from '../../../domain/entities/usuario.entity';
+import { IDomainUsuario, IDomainCreateUsuario } from '../../../domain/models/usuario.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment.development';
-import { IApiUsuario } from '../../models/usuario-api.model';
+import { IApiUsuario } from '../../entities/usuario-api.entity';
 import { UsuarioMapper } from '../../mappers/usuario.mapper';
 
 @Injectable({

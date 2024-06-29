@@ -1,5 +1,5 @@
-import { IDomainUsuario } from '../../domain/entities/usuario.entity';
-import { IApiUsuario } from '../models/usuario-api.model';
+import { IDomainUsuario } from '../../domain/models/usuario.model';
+import { IApiUsuario } from '../entities/usuario-api.entity';
 import { EmpleadoMapper } from './empleado.mapper';
 
 export class UsuarioMapper {

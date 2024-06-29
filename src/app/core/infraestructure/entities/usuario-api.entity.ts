@@ -1,4 +1,4 @@
-import { IApiEmpleado } from './empleado-api.model';
+import { IApiEmpleado } from './empleado-api.entity';
 
 export interface IApiCreateUsuario {
   readonly empleado: IApiEmpleado;

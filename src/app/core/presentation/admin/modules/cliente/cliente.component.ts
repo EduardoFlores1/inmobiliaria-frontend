@@ -9,7 +9,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ClienteTablaComponent } from './components/cliente-tabla/cliente-tabla.component';
 import { ClienteRepositoryImplService } from '../../../../infraestructure/repositories/cliente/cliente-repository-impl.service';
-import { ClienteEntity } from '../../../../domain/entities/cliente.entity';
+import { ClienteEntity } from '../../../../domain/models/cliente.model';
 import { ClienteDialogComponent } from './components/cliente-dialog/cliente-dialog.component';
 
 @Component({

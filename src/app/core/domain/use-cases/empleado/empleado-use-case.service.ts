@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { ICommonUseCases } from '../common-use-case.interface';
-import { IDomainCreateEmpleado, IDomainEmpleado } from '../../entities/empleado.entity';
+import { IDomainCreateEmpleado, IDomainEmpleado } from '../../models/empleado.model';
 import { Observable } from 'rxjs';
 import { HTTP_EMPLEADO_SERVICE } from '../../../infraestructure/providers/empleado-api.provider';
 import { IEmpleadoApiService } from '../../../infraestructure/services/empleado/empleado-api.interface';

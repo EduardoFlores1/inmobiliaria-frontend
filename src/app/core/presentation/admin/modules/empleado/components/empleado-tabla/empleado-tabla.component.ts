@@ -5,7 +5,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { EmpleadoEntity } from '../../../../../../domain/entities/empleado.entity';
+import { EmpleadoEntity } from '../../../../../../domain/models/empleado.model';
 
 @Component({
   selector: 'app-empleado-tabla',

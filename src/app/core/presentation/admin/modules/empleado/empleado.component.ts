@@ -6,7 +6,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { EmpleadoRepositoryImplService } from '../../../../infraestructure/repositories/empleado/empleado.repository.impl.service';
 import { Subscription } from 'rxjs';
-import { EmpleadoEntity } from '../../../../domain/entities/empleado.entity';
+import { EmpleadoEntity } from '../../../../domain/models/empleado.model';
 import { AdminConfirmComponent } from '../../components/admin-confirm/admin-confirm.component';
 import { EmpleadoDialogComponent } from './components/empleado-dialog/empleado-dialog.component';
 import {MatInputModule} from '@angular/material/input';

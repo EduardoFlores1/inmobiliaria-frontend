@@ -1,10 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { IContratoApiService } from './contrato-api.interface';
 import { Observable, map } from 'rxjs';
-import { IDomainContrato, IDomainCreateContrato } from '../../../domain/entities/contrato.entity';
+import { IDomainContrato, IDomainCreateContrato } from '../../../domain/models/contrato.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment.development';
-import { IApiContrato } from '../../models/contrato-api.model';
+import { IApiContrato } from '../../entities/contrato-api.entity';
 import { ContratoMapper } from '../../mappers/contrato.mapper';
 
 @Injectable({

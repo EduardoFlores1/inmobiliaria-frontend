@@ -8,7 +8,7 @@ import { AdminConfirmComponent } from '../../components/admin-confirm/admin-conf
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { UsuarioRepositoryImplService } from '../../../../infraestructure/repositories/usuario/usuario.repository.impl.service';
-import { UsuarioEntity } from '../../../../domain/entities/usuario.entity';
+import { UsuarioEntity } from '../../../../domain/models/usuario.model';
 import { UsuarioDialogComponent } from './components/usuario-dialog/usuario-dialog.component';
 import { UsuarioTablaComponent } from './components/usuario-tabla/usuario-tabla.component';
 

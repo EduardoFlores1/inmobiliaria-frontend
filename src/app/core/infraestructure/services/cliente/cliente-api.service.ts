@@ -1,10 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { IClienteApiService } from './cliente-api.interface';
 import { Observable, map } from 'rxjs';
-import { IDomainCliente, IDomainCreateCliente } from '../../../domain/entities/cliente.entity';
+import { IDomainCliente, IDomainCreateCliente } from '../../../domain/models/cliente.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment.development';
-import { IApiCliente } from '../../models/cliente-api.model';
+import { IApiCliente } from '../../entities/cliente-api.entity';
 import { ClienteMapper } from '../../mappers/cliente.mapper';
 
 @Injectable({

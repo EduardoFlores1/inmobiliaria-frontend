@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { ICommonUseCases } from '../common-use-case.interface';
-import { IDomainContrato, IDomainCreateContrato } from '../../entities/contrato.entity';
+import { IDomainContrato, IDomainCreateContrato } from '../../models/contrato.model';
 import { Observable } from 'rxjs';
 import { HTTP_CONTRATO_SERVICE } from '../../../infraestructure/providers/contrato-api.provider';
 import { IContratoApiService } from '../../../infraestructure/services/contrato/contrato-api.interface';

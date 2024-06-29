@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { ICommonUseCases } from '../common-use-case.interface';
-import { IDomainCreateUsuario, IDomainUsuario } from '../../entities/usuario.entity';
+import { IDomainCreateUsuario, IDomainUsuario } from '../../models/usuario.model';
 import { Observable } from 'rxjs';
 import { HTTP_USUARIO_SERVICE } from '../../../infraestructure/providers/usuario-api.provider';
 import { IUsuarioApiService } from '../../../infraestructure/services/usuario/usuario-api.interface';

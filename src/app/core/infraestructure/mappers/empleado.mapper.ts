@@ -1,5 +1,5 @@
-import { IDomainEmpleado } from '../../domain/entities/empleado.entity';
-import { IApiEmpleado } from '../models/empleado-api.model';
+import { IDomainEmpleado } from '../../domain/models/empleado.model';
+import { IApiEmpleado } from '../entities/empleado-api.entity';
 
 export class EmpleadoMapper {
   static fromApiToDomain(apiEmpleado: IApiEmpleado): IDomainEmpleado {
