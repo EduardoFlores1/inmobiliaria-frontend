@@ -1,5 +1,4 @@
-export interface EmpleadoEntity {
-  idEmpleado: number;
+export interface IDomainCreateEmpleado {
   nombre: string;
   apellido: string;
   email: string;
@@ -8,4 +7,8 @@ export interface EmpleadoEntity {
   fechaContratacion: string;
   cargo: string;
   estado: boolean;
+}
+
+export interface IDomainEmpleado extends IDomainCreateEmpleado{
+  idEmpleado: number;
 }
