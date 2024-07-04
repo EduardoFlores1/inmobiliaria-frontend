@@ -1,10 +1,10 @@
 <div class="container">
   <section class="header">
-    <app-admin-header (open)="openDialogResponse($event)" />
+    <app-admin-header (open)="openDialogResponse()" />
   </section>
   <section class="sidenav">
     <mat-drawer-container class="sidenav_container" [hasBackdrop]="true">
-      <mat-drawer class="panel" [opened]="isOpenSidenav()" #drawer mode="over">
+      <mat-drawer class="panel" #drawer mode="over">
         <div class="cabecera">
           <img class="cabecera__logo" src="../../../../../assets/images/logo/quevedo-logo.webp" alt="">
           <div class="cabecera__perfil cabecera__perfil--estilo">

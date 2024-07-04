@@ -19,12 +19,8 @@ export class AdminHeaderComponent {
 
   @Output() open =  new EventEmitter();
 
-  // variables
-  private isOpen = signal<boolean>(false);
-
   openSidenav() {
-    this.isOpen.update(state => !state);
-    this.open.emit(this.isOpen());
+    this.open.emit();
   }
 
 }

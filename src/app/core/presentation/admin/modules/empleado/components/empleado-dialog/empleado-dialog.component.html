@@ -33,7 +33,7 @@
             </mat-form-field>
             <mat-form-field class="fields__direccion" appearance="outline">
               <mat-label>Dirección</mat-label>
-              <input matInput placeholder="ingrese su Direccion">
+              <input matInput placeholder="ingrese su direccion">
             </mat-form-field>
             <mat-form-field appearance="outline" class="fields__cargo">
               <mat-label>Elija Cargo</mat-label>
@@ -42,13 +42,6 @@
                 <mat-option value="option">Vendedor</mat-option>
                 <mat-option value="option">Secretario</mat-option>
               </mat-select>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="fields__fContratacion">
-              <mat-label>F. Contratación</mat-label>
-              <input matInput [matDatepicker]="picker">
-              <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
         </form>
         <div>
@@ -59,16 +52,38 @@
       <mat-step [stepControl]="secondFormGroup" editable="true">
         <form [formGroup]="secondFormGroup">
           <ng-template matStepLabel>DATOS CONTRATO</ng-template>
-          <mat-form-field>
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                   required>
+
+          <mat-form-field class="fInicio">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="datepicker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
           </mat-form-field>
-          <div>
-            <button mat-raised-button color="warn" matStepperPrevious>Atras</button>
-            <button mat-raised-button color="accent" matStepperNext>Siguiente</button>
-          </div>
+
+          <mat-form-field class="fFin">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="datepicker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+          </mat-form-field>
+
         </form>
+        <div>
+          <button mat-raised-button color="warn" matStepperPrevious>Atras</button>
+          <button mat-raised-button color="accent" matStepperNext>Siguiente</button>
+        </div>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>

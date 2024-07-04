@@ -1,7 +1,7 @@
-import { Component, signal } from '@angular/core';
-import { RouterLinkActive, RouterLinkWithHref, RouterModule, RouterOutlet } from '@angular/router';
+import { Component, signal, ViewChild } from '@angular/core';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { AdminHeaderComponent } from '../components/admin-header/admin-header.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -19,11 +19,10 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class AdminLayoutComponent {
 
-  // variables
-  isOpenSidenav = signal<boolean>(false);
+  @ViewChild('drawer') drawer!: MatDrawer;
 
-  openDialogResponse(estado: boolean) {
-    this.isOpenSidenav.set(estado);
+  openDialogResponse() {
+    this.drawer.toggle();
   }
 
 }
