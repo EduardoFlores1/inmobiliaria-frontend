@@ -1,0 +1,66 @@
+h1,
+h2,
+h3,
+h4 {
+  margin: 0px;
+}
+.container {
+  height: 80vh;
+  width: 55vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 25px;
+  .cabecera {
+    & __titulo {
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
+  .cuerpo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .fields {
+      display: grid;
+      gap: 10px;
+      margin: 10px 0px;
+      grid-template-areas: 
+        "nombre apellido telefono"
+        "dni direccion direccion"
+        "email cargo fContratacion";
+  
+      &__nombre {
+        grid-area: nombre;
+      }
+      &__apellido {
+        grid-area: apellido;
+      }
+      &__email {
+        grid-area: email;
+      }
+      &__dni {
+        grid-area: dni;
+      }
+      &__telefono {
+        grid-area: telefono;
+      }
+      &__direccion {
+        grid-area: direccion;
+      }
+      &__cargo {
+        grid-area: cargo;
+      }
+      &__fContratacion {
+        grid-area: fContratacion;
+      }
+    }
+
+  }
+}
+
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}

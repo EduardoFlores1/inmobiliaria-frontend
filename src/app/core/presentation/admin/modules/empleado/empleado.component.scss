@@ -16,10 +16,19 @@ h4 {
   .busqueda {
     display: flex;
     flex-direction: column;
+    &__input {
+      width: 40%;
+    }
   }
   .acciones {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  .cabecera {
+    &__titulo {
+      font-size: 32px;
+      font-weight: 500;
+    }
   }
 }

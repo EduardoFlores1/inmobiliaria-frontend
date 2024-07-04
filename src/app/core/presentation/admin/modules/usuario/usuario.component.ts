@@ -7,10 +7,10 @@ import { Subscription } from 'rxjs';
 import { AdminConfirmComponent } from '../../components/admin-confirm/admin-confirm.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { UsuarioRepositoryImplService } from '../../../../infraestructure/repositories/usuario/usuario.repository.impl.service';
-import { UsuarioEntity } from '../../../../domain/models/usuario.model';
+import { IDomainUsuario } from '../../../../domain/models/usuario.model';
 import { UsuarioDialogComponent } from './components/usuario-dialog/usuario-dialog.component';
 import { UsuarioTablaComponent } from './components/usuario-tabla/usuario-tabla.component';
+import { UsuarioUseCaseService } from '../../../../domain/use-cases/usuario/usuario-use-case.service';
 
 @Component({
   selector: 'app-usuario',
@@ -28,14 +28,14 @@ import { UsuarioTablaComponent } from './components/usuario-tabla/usuario-tabla.
 export default class UsuarioComponent {
 
   // services
-  private _usuariosServ = inject(UsuarioRepositoryImplService);
+  private _usuarioUseCaseService = inject(UsuarioUseCaseService);
 
   //
   private dialog = inject(MatDialog);
   private subscriptions$ = new Subscription; 
 
   // variables
-  usuarios = signal<UsuarioEntity[]>([]);
+  usuarios = signal<IDomainUsuario[]>([]);
 
   constructor() {}
 
@@ -45,8 +45,8 @@ export default class UsuarioComponent {
 
   private readAll() {
     this.subscriptions$?.add(
-      this._usuariosServ.readAll().subscribe({
-        next: (datos: UsuarioEntity[]) => {
+      this._usuarioUseCaseService.readAll().subscribe({
+        next: (datos: IDomainUsuario[]) => {
           this.usuarios.set(datos);
         },
         error(err) {
@@ -97,7 +97,7 @@ export default class UsuarioComponent {
     );
   }
 
-  deleteItemHandler(item: UsuarioEntity) {
+  deleteItemHandler(item: IDomainUsuario) {
     const dialogRef =  this.dialog.open(AdminConfirmComponent, {
       data: {
         color: 'warn',
@@ -110,7 +110,7 @@ export default class UsuarioComponent {
     dialogRef.afterClosed().subscribe(
       (result: string) => {
         if(result === 'accept') {
-          this._usuariosServ.deleteById(item.idUsuario).subscribe({
+          this._usuarioUseCaseService.deleteById(item.idUsuario).subscribe({
             next: () => {
               this.readAll();
               console.log('delete ok')

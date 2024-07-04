@@ -13,7 +13,7 @@ import { EmpleadoMapper } from '../../mappers/empleado.mapper';
 export class EmpleadoApiService implements IEmpleadoApiService {
 
   private _http = inject(HttpClient);
-  private readonly API_URL = `${environment.API_URL}/empleados`;
+  private readonly API_URL = `${environment.API_URL}/api/v1/empleados`;
 
   readAll(): Observable<IDomainEmpleado[]> {
     return this._http.get<IApiEmpleado[]>(this.API_URL)

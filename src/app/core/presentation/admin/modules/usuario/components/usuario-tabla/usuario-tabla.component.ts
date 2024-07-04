@@ -5,7 +5,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { UsuarioEntity } from '../../../../../../domain/models/usuario.model';
+import { IDomainUsuario } from '../../../../../../domain/models/usuario.model';
 
 @Component({
   selector: 'app-usuario-tabla',
@@ -23,7 +23,7 @@ import { UsuarioEntity } from '../../../../../../domain/models/usuario.model';
 export class UsuarioTablaComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @Input({required: true}) usuarios!: UsuarioEntity[];
+  @Input({required: true}) usuarios!: IDomainUsuario[];
   @Output() editItem = new EventEmitter();
   @Output() deleteItem = new EventEmitter();
 

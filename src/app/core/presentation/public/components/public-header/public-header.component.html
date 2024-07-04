@@ -1,13 +1,20 @@
-<mat-toolbar>
+<mat-toolbar color="accent">
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>business</mat-icon>
   </button>
   <span>Inmob Quevedo</span>
   <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
+  <div class="menus">
+    <span class="menu">Home</span>
+    <span class="menu">Lotes</span>
+    <span class="menu">Nosotros</span>
+    <span class="menu">Contacto</span>
+  </div>
+  <span class="example-spacer"></span>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>share</mat-icon>
+  </button>
+  <button routerLink="/auth" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>account_circle</mat-icon>
   </button>
 </mat-toolbar>

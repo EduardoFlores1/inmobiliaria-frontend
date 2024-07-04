@@ -8,13 +8,13 @@ table {
 }
 
 .estado-activo {
-  border-radius: var(--border-radius-badge);
-  background-color: var(--text-badge-success);
+  border-radius: 4px;
+  background-color: green;
   
 }
 .estado-inactivo {
-  border-radius: var(--border-radius-badge);
-  background-color: var(--text-badge-danger);
+  border-radius: 4px;
+  background-color: red;
 }
 
 .acciones__botones {

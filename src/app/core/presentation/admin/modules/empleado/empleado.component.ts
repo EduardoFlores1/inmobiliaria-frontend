@@ -4,13 +4,14 @@ import { EmpleadoTablaComponent } from './components/empleado-tabla/empleado-tab
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
-import { EmpleadoRepositoryImplService } from '../../../../infraestructure/repositories/empleado/empleado.repository.impl.service';
 import { Subscription } from 'rxjs';
-import { EmpleadoEntity } from '../../../../domain/models/empleado.model';
+import { IDomainEmpleado } from '../../../../domain/models/empleado.model';
 import { AdminConfirmComponent } from '../../components/admin-confirm/admin-confirm.component';
 import { EmpleadoDialogComponent } from './components/empleado-dialog/empleado-dialog.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { EmpleadoUseCaseService } from '../../../../domain/use-cases/empleado/empleado-use-case.service';
+import {MatMenuModule} from '@angular/material/menu';
 
 @Component({
   selector: 'app-empleado',
@@ -20,7 +21,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatButtonModule,
     MatIconModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatMenuModule
   ],
   templateUrl: './empleado.component.html',
   styleUrl: './empleado.component.scss'
@@ -28,14 +30,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 export default class EmpleadoComponent {
 
   // services
-  private _empleadosServ = inject(EmpleadoRepositoryImplService);
+  private _empleadoUseCaseService = inject(EmpleadoUseCaseService);
 
   //
   private dialog = inject(MatDialog);
   private subscriptions$ = new Subscription; 
 
   // variables
-  empleados = signal<EmpleadoEntity[]>([]);
+  empleados = signal<IDomainEmpleado[]>([]);
 
   constructor() {}
 
@@ -45,8 +47,8 @@ export default class EmpleadoComponent {
 
   private readAll() {
     this.subscriptions$?.add(
-      this._empleadosServ.readAll().subscribe({
-        next: (datos: EmpleadoEntity[]) => {
+      this._empleadoUseCaseService.readAll().subscribe({
+        next: (datos: IDomainEmpleado[]) => {
           this.empleados.set(datos);
         },
         error(err) {
@@ -97,7 +99,7 @@ export default class EmpleadoComponent {
     );
   }
 
-  deleteItemHandler(item: EmpleadoEntity) {
+  deleteItemHandler(item: IDomainEmpleado) {
     const dialogRef =  this.dialog.open(AdminConfirmComponent, {
       data: {
         color: 'warn',
@@ -110,7 +112,7 @@ export default class EmpleadoComponent {
     dialogRef.afterClosed().subscribe(
       (result: string) => {
         if(result === 'accept') {
-          this._empleadosServ.deleteById(item.idEmpleado).subscribe({
+          this._empleadoUseCaseService.deleteById(item.idEmpleado).subscribe({
             next: () => {
               this.readAll();
               console.log('delete ok')

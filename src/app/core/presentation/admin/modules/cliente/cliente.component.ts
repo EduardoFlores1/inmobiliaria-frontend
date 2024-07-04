@@ -8,9 +8,9 @@ import { AdminConfirmComponent } from '../../components/admin-confirm/admin-conf
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ClienteTablaComponent } from './components/cliente-tabla/cliente-tabla.component';
-import { ClienteRepositoryImplService } from '../../../../infraestructure/repositories/cliente/cliente-repository-impl.service';
-import { ClienteEntity } from '../../../../domain/models/cliente.model';
+import { IDomainCliente } from '../../../../domain/models/cliente.model';
 import { ClienteDialogComponent } from './components/cliente-dialog/cliente-dialog.component';
+import { ClienteUseCaseService } from '../../../../domain/use-cases/cliente/cliente-use-case.service';
 
 @Component({
   selector: 'app-cliente',
@@ -28,14 +28,14 @@ import { ClienteDialogComponent } from './components/cliente-dialog/cliente-dial
 export default class ClienteComponent {
 
     // services
-    private _clientesServ = inject(ClienteRepositoryImplService);
+    private _clienteUseCaseService = inject(ClienteUseCaseService);
 
     //
     private dialog = inject(MatDialog);
     private subscriptions$ = new Subscription; 
   
     // variables
-    clientes = signal<ClienteEntity[]>([]);
+    clientes = signal<IDomainCliente[]>([]);
   
     constructor() {}
   
@@ -45,8 +45,8 @@ export default class ClienteComponent {
   
     private readAll() {
       this.subscriptions$?.add(
-        this._clientesServ.readAll().subscribe({
-          next: (datos: ClienteEntity[]) => {
+        this._clienteUseCaseService.readAll().subscribe({
+          next: (datos: IDomainCliente[]) => {
             this.clientes.set(datos);
           },
           error(err) {
@@ -97,7 +97,7 @@ export default class ClienteComponent {
       );
     }
   
-    deleteItemHandler(item: ClienteEntity) {
+    deleteItemHandler(item: IDomainCliente) {
       const dialogRef =  this.dialog.open(AdminConfirmComponent, {
         data: {
           color: 'warn',
@@ -110,7 +110,7 @@ export default class ClienteComponent {
       dialogRef.afterClosed().subscribe(
         (result: string) => {
           if(result === 'accept') {
-            this._clientesServ.deleteById(item.idCliente).subscribe({
+            this._clienteUseCaseService.deleteById(item.idCliente).subscribe({
               next: () => {
                 this.readAll();
                 console.log('delete ok')

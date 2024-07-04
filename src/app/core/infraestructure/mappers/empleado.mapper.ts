@@ -8,11 +8,13 @@ export class EmpleadoMapper {
         nombre: apiEmpleado.nombre,
         apellido: apiEmpleado.apellido,
         email: apiEmpleado.email,
+        dni: apiEmpleado.dni,
         telefono: apiEmpleado.telefono,
         direccion: apiEmpleado.direccion,
         fechaContratacion: apiEmpleado.fechaContratacion,
         cargo: apiEmpleado.cargo,
         estado: apiEmpleado.estado,
+        contratoDTO: apiEmpleado.contratoDTO
     }
   }
 }

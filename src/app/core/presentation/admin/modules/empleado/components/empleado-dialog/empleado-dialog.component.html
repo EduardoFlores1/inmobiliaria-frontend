@@ -1,1 +1,85 @@
-<p>empleado-dialog works!</p>
+<div class="container">
+  <section class="cabecera">
+    <h1 class="cabecera__titulo">Registre un Empleado</h1>
+  </section>
+  <section class="cuerpo">
+
+    <mat-stepper linear #stepper>
+      <mat-step [stepControl]="firstFormGroup" editable="true">
+        <form class="fields" [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>DATOS EMPLEADO</ng-template>
+        
+            <mat-form-field class="fields__nombre" appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input matInput placeholder="ingrese el nombre">
+            </mat-form-field>
+            <mat-form-field class="fields__apellido" appearance="outline">
+              <mat-label>Apellido</mat-label>
+              <input matInput placeholder="ingrese el apellido">
+            </mat-form-field>
+      
+            <mat-form-field class="fields__email" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="ingrese el email">
+            </mat-form-field>
+            <mat-form-field class="fields__dni" appearance="outline">
+              <mat-label>DNI</mat-label>
+              <input matInput placeholder="ingrese el DNI">
+            </mat-form-field>
+      
+            <mat-form-field class="fields__telefono" appearance="outline">
+              <mat-label>Telefono</mat-label>
+              <input matInput placeholder="ingrese su telefono">
+            </mat-form-field>
+            <mat-form-field class="fields__direccion" appearance="outline">
+              <mat-label>Dirección</mat-label>
+              <input matInput placeholder="ingrese su Direccion">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="fields__cargo">
+              <mat-label>Elija Cargo</mat-label>
+              <mat-select>
+                <mat-option value="option">Supervisor</mat-option>
+                <mat-option value="option">Vendedor</mat-option>
+                <mat-option value="option">Secretario</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="fields__fContratacion">
+              <mat-label>F. Contratación</mat-label>
+              <input matInput [matDatepicker]="picker">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </form>
+        <div>
+          <button mat-raised-button color="accent" matStepperNext>Siguiente</button>
+        </div>
+      </mat-step>
+      <!--SECOND STEP-->
+      <mat-step [stepControl]="secondFormGroup" editable="true">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>DATOS CONTRATO</ng-template>
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <div>
+            <button mat-raised-button color="warn" matStepperPrevious>Atras</button>
+            <button mat-raised-button color="accent" matStepperNext>Siguiente</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-raised-button color="warn" matStepperPrevious>Atras</button>
+          <button mat-raised-button color="primary">Guardar</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+
+    
+  </section>
+</div>

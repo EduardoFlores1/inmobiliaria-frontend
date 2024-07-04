@@ -5,7 +5,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { ClienteEntity } from '../../../../../../domain/models/cliente.model';
+import { IDomainCliente } from '../../../../../../domain/models/cliente.model';
 
 @Component({
   selector: 'app-cliente-tabla',
@@ -23,7 +23,7 @@ import { ClienteEntity } from '../../../../../../domain/models/cliente.model';
 export class ClienteTablaComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @Input({required: true}) clientes!: ClienteEntity[];
+  @Input({required: true}) clientes!: IDomainCliente[];
   @Output() editItem = new EventEmitter();
   @Output() deleteItem = new EventEmitter();
 

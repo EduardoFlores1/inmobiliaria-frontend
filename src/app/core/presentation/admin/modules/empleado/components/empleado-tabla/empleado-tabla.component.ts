@@ -5,7 +5,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { EmpleadoEntity } from '../../../../../../domain/models/empleado.model';
+import { IDomainEmpleado } from '../../../../../../domain/models/empleado.model';
 
 @Component({
   selector: 'app-empleado-tabla',
@@ -23,11 +23,11 @@ import { EmpleadoEntity } from '../../../../../../domain/models/empleado.model';
 export class EmpleadoTablaComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @Input({required: true}) empleados!: EmpleadoEntity[];
+  @Input({required: true}) empleados!: IDomainEmpleado[];
   @Output() editItem = new EventEmitter();
   @Output() deleteItem = new EventEmitter();
 
-  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'telefono', 'estado', 'acciones'];
+  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'dni', 'telefono', 'cargo', 'estado', 'acciones'];
   dataSource = new MatTableDataSource();
 
   ngOnChanges(changes: SimpleChanges): void {
