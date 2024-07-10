@@ -23,7 +23,7 @@ h4 {
     justify-content: center;
     align-items: center;
 
-    .fields {
+    .fields1 {
       display: grid;
       gap: 10px;
       margin: 10px 0px;
@@ -53,6 +53,29 @@ h4 {
       &__cargo {
         grid-area: cargo;
       }
+    }
+    .fields2 {
+      display: grid;
+      gap: 10px;
+      margin: 10px 0px;
+      grid-template-areas: 
+        "fInicio fFin"
+        "tipoContrato .";
+
+      &__fInicio {
+        grid-area: fInicio;
+      }
+      &__fFin {
+        grid-area: fFin;
+      }
+      &__tipoContrato {
+        grid-area: tipoContrato;
+      }
+    }
+
+    &__buttons {
+      display: flex;
+      gap: 20px;
     }
 
   }

@@ -6,9 +6,8 @@ export class UsuarioMapper {
   static fromApiToDomain(apiUsuario: IApiUsuario): IDomainUsuario {
     return {
       idUsuario: apiUsuario.idUsuario,
-      empleado: EmpleadoMapper.fromApiToDomain(apiUsuario.empleado),
+      empleado: EmpleadoMapper.fromApiToDomain(apiUsuario.empleadoDTO),
       username: apiUsuario.username,
-      password: apiUsuario.password,
       rol: apiUsuario.rol,
       equipoVenta: apiUsuario.equipoVenta,
       fechaRegistro: apiUsuario.fechaRegistro,

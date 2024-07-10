@@ -1,12 +1,10 @@
 import { IDomainCliente } from '../../domain/models/cliente.model';
 import { IApiCliente } from '../entities/cliente-api.entity';
-import { UsuarioMapper } from './usuario.mapper';
 
 export class ClienteMapper {
   static fromApiToDomain(apiCliente: IApiCliente): IDomainCliente {
     return {
       idCliente: apiCliente.idCliente,
-      usuario: UsuarioMapper.fromApiToDomain(apiCliente.usuario),
       nombre: apiCliente.nombre,
       apellido: apiCliente.apellido,
       dni: apiCliente.dni,

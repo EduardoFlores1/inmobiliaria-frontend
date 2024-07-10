@@ -1,15 +1,21 @@
 import { IDomainEmpleado } from './empleado.model';
 
 export interface IDomainCreateUsuario {
-  empleado: IDomainEmpleado;
   username: string;
   password: string;
   rol: string;
   equipoVenta: number;
   fechaRegistro: string;
   estado: boolean;
+  empleado: IDomainEmpleado;
 }
 
-export interface IDomainUsuario extends IDomainCreateUsuario{
+export interface IDomainUsuario{
   idUsuario: number;
+  username: string;
+  rol: string;
+  equipoVenta: number;
+  fechaRegistro: string;
+  estado: boolean;
+  empleado: IDomainEmpleado;
 }

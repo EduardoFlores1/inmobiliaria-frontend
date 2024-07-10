@@ -1,7 +1,6 @@
 import { IApiUsuario } from './usuario-api.entity';
 
 export interface IApiCreateCliente {
-  readonly usuario: IApiUsuario;
   readonly nombre: string;
   readonly apellido: string;
   readonly dni: string;
@@ -10,8 +9,17 @@ export interface IApiCreateCliente {
   readonly fechaRegistro: string;
   readonly tipoEstado: string,
   readonly estado: boolean;
+  readonly usuarioDTO: IApiUsuario;
 }
 
-export interface IApiCliente extends IApiCreateCliente{
+export interface IApiCliente{
   readonly idCliente: number;
+  readonly nombre: string;
+  readonly apellido: string;
+  readonly dni: string;
+  readonly telefono: string;
+  readonly email: string;
+  readonly fechaRegistro: string;
+  readonly tipoEstado: string,
+  readonly estado: boolean;
 }

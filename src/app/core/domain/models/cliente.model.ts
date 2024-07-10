@@ -1,7 +1,6 @@
 import { IDomainUsuario } from './usuario.model';
 
 export interface IDomainCreateCliente {
-  usuario: IDomainUsuario;
   nombre: string;
   apellido: string;
   dni: string;
@@ -10,8 +9,17 @@ export interface IDomainCreateCliente {
   fechaRegistro: string;
   tipoEstado: string,
   estado: boolean;
+  usuario: IDomainUsuario;
 }
 
-export interface IDomainCliente extends IDomainCreateCliente{
+export interface IDomainCliente{
   idCliente: number;
+  nombre: string;
+  apellido: string;
+  dni: string;
+  telefono: string;
+  email: string;
+  fechaRegistro: string;
+  tipoEstado: string,
+  estado: boolean;
 }
