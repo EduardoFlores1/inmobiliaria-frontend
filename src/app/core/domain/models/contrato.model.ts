@@ -4,7 +4,6 @@ export interface IDomainCreateContrato {
   fechaInicio: string;
   fechaFin: string;
   tipoContrato: string;
-  empleadoDTO: IDomainEmpleado;
 }
 
 export interface IDomainContrato {

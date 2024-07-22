@@ -1,17 +1,20 @@
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   background-color: aliceblue;
   height: 100%;
+  gap: 70px;
 
+  .progressBar {
+    height: 8px;
+  }
   .card {
-    width: 25%;
+    max-width: 350px;
     height: 75vh;
     margin: 0px auto;
     display: flex;
     flex-direction: column;
-    padding: 15px 10px;
+    padding: 15px 30px;
 
       &__cabecera {
         display: flex;
@@ -34,7 +37,15 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         gap: 10px;
+
+        form {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+        }
       }
     
   }

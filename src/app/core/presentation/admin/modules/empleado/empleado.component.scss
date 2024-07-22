@@ -10,25 +10,37 @@ h4 {
   flex-direction: column;
   gap: 20px;
 
-  width: 90%;
-  margin: 30px auto;
+  .progressBar {
+    height: 8px;
+  }
 
+  .cabecera {
+    &__titulo {
+      font-size: 32px;
+      font-weight: 500;
+    }
+    width: 90%;
+    margin: 0px auto;
+  }
   .busqueda {
     display: flex;
     flex-direction: column;
     &__input {
       width: 40%;
     }
+    width: 90%;
+    margin: 0px auto;
   }
   .acciones {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 90%;
+    margin: 0px auto;
   }
-  .cabecera {
-    &__titulo {
-      font-size: 32px;
-      font-weight: 500;
-    }
+  .tabla {
+    width: 90%;
+    margin: 0px auto;
   }
+  
 }

@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment.development';
 import { IApiCliente } from '../../entities/cliente-api.entity';
 import { ClienteMapper } from '../../mappers/cliente.mapper';
+import { ResponseDTO } from '../../util/ResponseDTO.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,30 +17,33 @@ export class ClienteApiService implements IClienteApiService{
   private readonly API_URL = `${environment.API_URL}/clientes`;
 
   readAll(): Observable<IDomainCliente[]> {
-    return this._http.get<IApiCliente[]>(this.API_URL)
+    return this._http.get<ResponseDTO<IApiCliente[]>>(this.API_URL)
       .pipe(
-        map((list) => list.map(ClienteMapper.fromApiToDomain))
+        map((response) => response.data.map(ClienteMapper.fromApiToDomain))
       );
   }
   readById(id: number): Observable<IDomainCliente> {
-    return this._http.get<IApiCliente>(`${this.API_URL}/${id}`)
+    return this._http.get<ResponseDTO<IApiCliente>>(`${this.API_URL}/${id}`)
       .pipe(
-        map(ClienteMapper.fromApiToDomain)
+        map((response) => ClienteMapper.fromApiToDomain(response.data))
       );
   }
   create(c: IDomainCreateCliente): Observable<IDomainCliente> {
-    return this._http.post<IApiCliente>(`${this.API_URL}`, c)
+    return this._http.post<ResponseDTO<IApiCliente>>(`${this.API_URL}`, c)
     .pipe(
-      map(ClienteMapper.fromApiToDomain)
+      map((response) => ClienteMapper.fromApiToDomain(response.data))
     );
   }
   update(id: number, m: IDomainCliente): Observable<IDomainCliente> {
-    return this._http.put<IApiCliente>(`${this.API_URL}/${id}`, m)
+    return this._http.put<ResponseDTO<IApiCliente>>(`${this.API_URL}/${id}`, m)
       .pipe(
-        map(ClienteMapper.fromApiToDomain)
+        map((response) => ClienteMapper.fromApiToDomain(response.data))
       );
   }
   deleteById(id: number): Observable<void> {
-    return this._http.delete<void>(`${this.API_URL}/${id}`);
+    return this._http.delete<ResponseDTO<void>>(`${this.API_URL}/${id}`)
+      .pipe(
+        map(() => undefined)
+      );
   }
 }

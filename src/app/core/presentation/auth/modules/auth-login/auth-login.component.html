@@ -1,22 +1,28 @@
 <div class="container">
+  <div class="progressBar">
+    @if (showProgressBar()) {
+    <app-progress-bar [mode]="modeProgressBar()" />
+    }
+  </div>
   <mat-card class="card">
-      <div class="card__cabecera">
-        <mat-icon class="card__cabecera__logo">account_circle</mat-icon>
-        <mat-card-title class="card__cabecera__titulo">Inicie Sesión</mat-card-title>
-      </div>
-      <div class="card__cuerpo">
-          <mat-form-field appearance="outline">
-            <mat-label>Username</mat-label>
-            <input matInput placeholder="ingrese su username">
-            <mat-icon matSuffix>how_to_reg</mat-icon>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input matInput placeholder="ingrese su password">
-            <mat-icon matSuffix>https</mat-icon>
-          </mat-form-field>
-
-        <button routerLink="/admin" mat-raised-button color="primary">Acceder</button>
-        </div>
+    <div class="card__cabecera">
+      <mat-icon class="card__cabecera__logo">account_circle</mat-icon>
+      <mat-card-title class="card__cabecera__titulo">Inicie Sesión</mat-card-title>
+    </div>
+    <div class="card__cuerpo">
+      <form class="card__cuerpo_forms" [formGroup]="formGroup">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="ingrese su username" formControlName="username">
+          <mat-icon matSuffix>how_to_reg</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="ingrese su password" formControlName="password">
+          <mat-icon matSuffix>https</mat-icon>
+        </mat-form-field>
+      </form>
+      <button [disabled]="formGroup.invalid" mat-raised-button color="primary" (click)="login()">Acceder</button>
+    </div>
   </mat-card>
 </div>

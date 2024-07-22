@@ -1,4 +1,9 @@
 <div class="container">
+  <div class="progressBar">
+    @if (showProgressBar()) {
+    <app-progress-bar [mode]="modeProgressBar()" />
+    }
+  </div>
   <section class="cabecera">
     <h1 class="cabecera__titulo">Gestion de Empleados:</h1>
   </section>

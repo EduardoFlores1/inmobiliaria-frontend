@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject, signal } from '@angular/core';
 
 import {FormBuilder, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,6 +10,10 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
+import { IDomainCreateEmpleado, IDomainEmpleado } from '../../../../../../domain/models/empleado.model';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { EmpleadoUseCaseService } from '../../../../../../domain/use-cases/empleado/empleado-use-case.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-empleado-dialog',
@@ -34,12 +38,128 @@ export class EmpleadoDialogComponent {
 
   private _formBuilder = inject(FormBuilder);
 
-  firstFormGroup = this._formBuilder.group({
+  // services
+  private _empleadoUseCase = inject(EmpleadoUseCaseService);
 
+  // varibles
+  private $sub: Subscription | undefined;
+  empleadoDomain = signal<IDomainEmpleado | null>(null);
+
+  firstFormGroup = this._formBuilder.group({
+    nombre: ['', [Validators.required, Validators.minLength(3)]],
+    apellido: ['', [Validators.required, Validators.minLength(3)]],
+    dni: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
+    telefono: ['', [Validators.required, Validators.minLength(9) , Validators.maxLength(9)]],
+    direccion: ['', [Validators.required, Validators.minLength(3)]],
+    cargo: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.email]]
   });
 
   secondFormGroup = this._formBuilder.group({
-
+    fechaInicio: ['', [Validators.required]],
+    fechaFin: ['', [Validators.required]],
+    tipoContrato: ['', [Validators.required, Validators.minLength(3)]]
   });
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+              private _dialogRef: MatDialogRef<EmpleadoDialogComponent>) {}
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    if(this.data.item) this.empleadoDomain.set(this.data.item);
+    this.setInitialForm();
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.$sub?.unsubscribe();
+  }
+
+  private setInitialForm() {
+    if(this.empleadoDomain()) {
+      this.firstFormGroup.setValue({
+        nombre: this.empleadoDomain()?.nombre!,
+        apellido: this.empleadoDomain()?.apellido!,
+        dni: this.empleadoDomain()?.dni!,
+        telefono: this.empleadoDomain()?.telefono!,
+        direccion: this.empleadoDomain()?.direccion!,
+        cargo: this.empleadoDomain()?.cargo!,
+        email: this.empleadoDomain()?.email!
+      })
+      this.secondFormGroup.setValue({
+        fechaInicio: this.empleadoDomain()?.contratoDTO.fechaInicio!,
+        fechaFin: this.empleadoDomain()?.contratoDTO.fechaFin!,
+        tipoContrato: this.empleadoDomain()?.contratoDTO.tipoContrato!
+      });
+    }
+  }
+
+  buildCreateEmpleado() {
+    const empleadoCreate: IDomainCreateEmpleado = {
+      nombre: this.firstFormGroup.get('nombre')?.value!,
+      apellido: this.firstFormGroup.get('apellido')?.value!,
+      email: this.firstFormGroup.get('email')?.value!,
+      dni: this.firstFormGroup.get('dni')?.value!,
+      telefono: this.firstFormGroup.get('telefono')?.value!,
+      direccion: this.firstFormGroup.get('direccion')?.value!,
+      fechaContratacion: '',
+      cargo: this.firstFormGroup.get('cargo')?.value!,
+      estado: true,
+      contratoCreateDTO: {
+        fechaInicio: this.secondFormGroup.get('fechaInicio')?.value!,
+        fechaFin: this.secondFormGroup.get('fechaFin')?.value!,
+        tipoContrato: this.secondFormGroup.get('tipoContrato')?.value!
+      }
+    }
+    return empleadoCreate;
+  }
+
+  buildEmpleado() {
+    const empleadoDomain: IDomainEmpleado = {
+      idEmpleado: this.empleadoDomain()?.idEmpleado!,
+      nombre: this.firstFormGroup.get('nombre')?.value!,
+      apellido: this.firstFormGroup.get('apellido')?.value!,
+      email: this.firstFormGroup.get('email')?.value!,
+      dni: this.firstFormGroup.get('dni')?.value!,
+      telefono: this.firstFormGroup.get('telefono')?.value!,
+      direccion: this.firstFormGroup.get('direccion')?.value!,
+      fechaContratacion: this.empleadoDomain()?.fechaContratacion!,
+      cargo: this.firstFormGroup.get('cargo')?.value!,
+      estado: this.empleadoDomain()?.estado!,
+      contratoDTO: {
+        idContrato: this.empleadoDomain()?.contratoDTO.idContrato!,
+        fechaInicio: this.secondFormGroup.get('fechaInicio')?.value!,
+        fechaFin: this.secondFormGroup.get('fechaFin')?.value!,
+        tipoContrato: this.secondFormGroup.get('tipoContrato')?.value!
+      }
+    }
+    return empleadoDomain;
+  }
+
+  saveHandler() {
+    if(this.empleadoDomain()) {
+      // editar
+      this.$sub = this._empleadoUseCase.update(this.empleadoDomain()?.idEmpleado!, this.buildEmpleado()).subscribe({
+        next: () => {
+          this._dialogRef.close('Actualización Exitosa');
+        },
+        error(err) {
+          console.log(err)
+        },
+      });
+    }else {
+      // crear
+      this.$sub = this._empleadoUseCase.create(this.buildCreateEmpleado()).subscribe({
+        next: () => {
+          this._dialogRef.close('Registro Exitoso');
+        },
+        error(err) {
+          console.log(err)
+        },
+      });
+    }
+  }
 
 }

@@ -1,1 +1,48 @@
-<p>usuario-dialog works!</p>
+<div class="container">
+  <section class="cabecera">
+    <h1 class="cabecera__titulo">REGISTRE UN USUARIO</h1>
+  </section>
+  <section class="cuerpo">
+    <form class="fields">
+      <mat-form-field class="fields__usernamee" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="ingrese el username">
+      </mat-form-field>
+
+      <mat-form-field class="fields__password" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="ingrese la password">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="fields__rol">
+        <mat-label>Defina El Rol</mat-label>
+        <mat-select>
+          <mat-option value="Supervisor">Supervisor</mat-option>
+          <mat-option value="Vendedor">Vendedor</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="fields__equipoVenta">
+        <mat-label>Equipo de Venta</mat-label>
+        <mat-select>
+          <mat-option value="1">1</mat-option>
+          <mat-option value="2">2</mat-option>
+          <mat-option value="3">3</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="fields__estado">
+        <mat-label>Defina El Estado</mat-label>
+        <mat-select>
+          <mat-option value="Activo">Activo</mat-option>
+          <mat-option value="Inactivo">Inactivo</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </section>
+
+  <section class="footer">
+    <button mat-raised-button color="warn" matStepperNext>Cancelar</button>
+    <button mat-raised-button color="primary" matStepperNext>Guardar</button>
+  </section>
+</div>

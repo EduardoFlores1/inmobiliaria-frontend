@@ -1,1 +1,47 @@
-<p>cliente-dialog works!</p>
+<div class="container">
+  <section class="cabecera">
+    <h1 class="cabecera__titulo">REGISTRE UN CLIENTE</h1>
+  </section>
+  <section class="cuerpo">
+    <form class="fields">
+      <mat-form-field class="fields__nombre" appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="ingrese el nombre">
+      </mat-form-field>
+
+      <mat-form-field class="fields__apellido" appearance="outline">
+        <mat-label>Apellido</mat-label>
+        <input matInput placeholder="ingrese el apellido">
+      </mat-form-field>
+
+      <mat-form-field class="fields__dni" appearance="outline">
+        <mat-label>DNI</mat-label>
+        <input matInput placeholder="ingrese su DNI">
+      </mat-form-field>
+
+      <mat-form-field class="fields__telefono" appearance="outline">
+        <mat-label>Teléfono</mat-label>
+        <input matInput placeholder="ingrese el telefono">
+      </mat-form-field>
+
+      <mat-form-field class="fields__email" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="ingrese el Email">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="fields__tipoEstado">
+        <mat-label>Tipo Estado</mat-label>
+        <mat-select>
+          <mat-option value="Estado A">Estado A</mat-option>
+          <mat-option value="Estado B">Estado B</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </form>
+  </section>
+
+  <section class="footer">
+    <button mat-raised-button color="warn" matStepperNext>Cancelar</button>
+    <button mat-raised-button color="primary" matStepperNext>Guardar</button>
+  </section>
+</div>

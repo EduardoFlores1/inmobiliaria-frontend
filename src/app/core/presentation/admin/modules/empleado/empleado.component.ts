@@ -4,7 +4,7 @@ import { EmpleadoTablaComponent } from './components/empleado-tabla/empleado-tab
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
+import { finalize, Subscription } from 'rxjs';
 import { IDomainEmpleado } from '../../../../domain/models/empleado.model';
 import { AdminConfirmComponent } from '../../components/admin-confirm/admin-confirm.component';
 import { EmpleadoDialogComponent } from './components/empleado-dialog/empleado-dialog.component';
@@ -12,6 +12,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { EmpleadoUseCaseService } from '../../../../domain/use-cases/empleado/empleado-use-case.service';
 import {MatMenuModule} from '@angular/material/menu';
+import { ProgressBarMode } from '@angular/material/progress-bar';
+import { ProgressBarComponent } from '../../../shared/components/progress-bar/progress-bar.component';
 
 @Component({
   selector: 'app-empleado',
@@ -22,7 +24,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
-    MatMenuModule
+    MatMenuModule,
+    ProgressBarComponent
   ],
   templateUrl: './empleado.component.html',
   styleUrl: './empleado.component.scss'
@@ -38,6 +41,8 @@ export default class EmpleadoComponent {
 
   // variables
   empleados = signal<IDomainEmpleado[]>([]);
+  showProgressBar = signal<boolean>(false);
+  modeProgressBar = signal<ProgressBarMode>('query');
 
   constructor() {}
 
@@ -46,8 +51,13 @@ export default class EmpleadoComponent {
   }
 
   private readAll() {
+    this.showProgressBar.set(true);
     this.subscriptions$?.add(
-      this._empleadoUseCaseService.readAll().subscribe({
+      this._empleadoUseCaseService.readAll()
+      .pipe(
+        finalize(() => this.showProgressBar.set(false))
+      )
+      .subscribe({
         next: (datos: IDomainEmpleado[]) => {
           this.empleados.set(datos);
         },
@@ -71,29 +81,25 @@ export default class EmpleadoComponent {
   }
 
   agregarItem() {
-    const dialogRef = this.openDialog('REGISTRAR ALMACENAMIENTO', 'Registrar');
+    const dialogRef = this.openDialog('REGISTRAR EMPLEADO', 'Registrar');
 
     dialogRef.afterClosed().subscribe(
       (result) => {
         if(result) {
           this.readAll();
-        }else {
-          console.log('No se registro el almacen')
         }
       }
     );
   }
 
   editItemHandler(item: any) {
-    const dialogRef = this.openDialog('EDITAR ALMACENAMIENTO', 'Actualizar', item);
+    const dialogRef = this.openDialog('EDITAR EMPLEADO', 'Actualizar', item);
 
     dialogRef.afterClosed().subscribe(
       (result) => {
         if(result) {
           this.readAll();
           console.log(result)
-        }else {
-          console.log('No se editó el almacen')
         }
       }
     );
