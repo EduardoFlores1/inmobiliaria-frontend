@@ -3,7 +3,7 @@ import { Component, inject, signal } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
+import { finalize, Subscription } from 'rxjs';
 import { AdminConfirmComponent } from '../../components/admin-confirm/admin-confirm.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -11,6 +11,8 @@ import { IDomainUsuario } from '../../../../domain/models/usuario.model';
 import { UsuarioDialogComponent } from './components/usuario-dialog/usuario-dialog.component';
 import { UsuarioTablaComponent } from './components/usuario-tabla/usuario-tabla.component';
 import { UsuarioUseCaseService } from '../../../../domain/use-cases/usuario/usuario-use-case.service';
+import { ProgressBarMode } from '@angular/material/progress-bar';
+import { ProgressBarComponent } from '../../../shared/components/progress-bar/progress-bar.component';
 
 @Component({
   selector: 'app-usuario',
@@ -20,7 +22,8 @@ import { UsuarioUseCaseService } from '../../../../domain/use-cases/usuario/usua
     MatIconModule,
     MatButtonModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ProgressBarComponent
   ],
   templateUrl: './usuario.component.html',
   styleUrl: './usuario.component.scss'
@@ -36,6 +39,8 @@ export default class UsuarioComponent {
 
   // variables
   usuarios = signal<IDomainUsuario[]>([]);
+  showProgressBar = signal<boolean>(false);
+  modeProgressBar = signal<ProgressBarMode>('query');
 
   constructor() {}
 
@@ -44,8 +49,13 @@ export default class UsuarioComponent {
   }
 
   private readAll() {
+    this.showProgressBar.set(true);
     this.subscriptions$?.add(
-      this._usuarioUseCaseService.readAll().subscribe({
+      this._usuarioUseCaseService.readAll()
+      .pipe(
+        finalize(() => this.showProgressBar.set(false))
+      )
+      .subscribe({
         next: (datos: IDomainUsuario[]) => {
           this.usuarios.set(datos);
         },
@@ -69,29 +79,25 @@ export default class UsuarioComponent {
   }
 
   agregarItem() {
-    const dialogRef = this.openDialog('REGISTRAR ALMACENAMIENTO', 'Registrar');
+    const dialogRef = this.openDialog('REGISTRAR USUARIO', 'Registrar');
 
     dialogRef.afterClosed().subscribe(
       (result) => {
         if(result) {
           this.readAll();
-        }else {
-          console.log('No se registro el almacen')
         }
       }
     );
   }
 
   editItemHandler(item: any) {
-    const dialogRef = this.openDialog('EDITAR ALMACENAMIENTO', 'Actualizar', item);
+    const dialogRef = this.openDialog('EDITAR USUARIO', 'Actualizar', item);
 
     dialogRef.afterClosed().subscribe(
       (result) => {
         if(result) {
           this.readAll();
           console.log(result)
-        }else {
-          console.log('No se editó el almacen')
         }
       }
     );

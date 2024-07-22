@@ -1,10 +1,15 @@
 <div class="container">
+  <div class="progressBar">
+    @if (showProgressBar()) {
+    <app-progress-bar [mode]="modeProgressBar()" />
+    }
+  </div>
   <section class="cabecera">
     <h1 class="cabecera__titulo">Gestion de Usuarios:</h1>
   </section>
   <section class="busqueda">
     <span>Busque un usuario:</span>
-    <mat-form-field>
+    <mat-form-field class="busqueda__input">
       <mat-label>Filtrar</mat-label>
       <input matInput placeholder="Ex. ium" #input>
     </mat-form-field>

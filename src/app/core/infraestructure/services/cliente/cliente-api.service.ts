@@ -14,7 +14,7 @@ import { ResponseDTO } from '../../util/ResponseDTO.interface';
 export class ClienteApiService implements IClienteApiService{
 
   private _http = inject(HttpClient);
-  private readonly API_URL = `${environment.API_URL}/clientes`;
+  private readonly API_URL = `${environment.API_URL}/api/v1/clientes`;
 
   readAll(): Observable<IDomainCliente[]> {
     return this._http.get<ResponseDTO<IApiCliente[]>>(this.API_URL)

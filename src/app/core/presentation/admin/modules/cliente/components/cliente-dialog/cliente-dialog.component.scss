@@ -7,6 +7,14 @@
   gap: 10px;
   padding: 20px 25px;
 
+  .cabecera {
+    &__titulo {
+      color: #673ab7;
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
+
   .cuerpo {
     width: 90%;
     .fields {
@@ -16,7 +24,7 @@
       grid-template-areas: 
       "nombre apellido dni"
       "telefono email email"
-      "tipoEstado . .";
+      "tipoEstado estado .";
 
       &__nombre {
         grid-area: nombre;
@@ -35,6 +43,9 @@
       }
       &__tipoEstado {
         grid-area: tipoEstado;
+      }
+      &__estado {
+        grid-area: estado;
       }
     }
   }

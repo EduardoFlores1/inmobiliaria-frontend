@@ -14,11 +14,15 @@ import { IDomainCreateEmpleado, IDomainEmpleado } from '../../../../../../domain
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { EmpleadoUseCaseService } from '../../../../../../domain/use-cases/empleado/empleado-use-case.service';
 import { Subscription } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-empleado-dialog',
   standalone: true,
-  providers: [provideNativeDateAdapter()],
+  providers: [
+    provideNativeDateAdapter(),
+    DatePipe
+  ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -40,6 +44,7 @@ export class EmpleadoDialogComponent {
 
   // services
   private _empleadoUseCase = inject(EmpleadoUseCaseService);
+  private _dateService = inject(DatePipe);
 
   // varibles
   private $sub: Subscription | undefined;
@@ -89,8 +94,8 @@ export class EmpleadoDialogComponent {
         email: this.empleadoDomain()?.email!
       })
       this.secondFormGroup.setValue({
-        fechaInicio: this.empleadoDomain()?.contratoDTO.fechaInicio!,
-        fechaFin: this.empleadoDomain()?.contratoDTO.fechaFin!,
+        fechaInicio: new Date(this.empleadoDomain()?.contratoDTO.fechaInicio!).toISOString(),
+        fechaFin: new Date(this.empleadoDomain()?.contratoDTO.fechaFin!).toISOString(),
         tipoContrato: this.empleadoDomain()?.contratoDTO.tipoContrato!
       });
     }
@@ -104,12 +109,12 @@ export class EmpleadoDialogComponent {
       dni: this.firstFormGroup.get('dni')?.value!,
       telefono: this.firstFormGroup.get('telefono')?.value!,
       direccion: this.firstFormGroup.get('direccion')?.value!,
-      fechaContratacion: '',
+      fechaContratacion: this.buildDate(),
       cargo: this.firstFormGroup.get('cargo')?.value!,
       estado: true,
       contratoCreateDTO: {
-        fechaInicio: this.secondFormGroup.get('fechaInicio')?.value!,
-        fechaFin: this.secondFormGroup.get('fechaFin')?.value!,
+        fechaInicio: this.buildDate(this.secondFormGroup.get('fechaInicio')?.value!),
+        fechaFin: this.buildDate(this.secondFormGroup.get('fechaFin')?.value!),
         tipoContrato: this.secondFormGroup.get('tipoContrato')?.value!
       }
     }
@@ -130,8 +135,8 @@ export class EmpleadoDialogComponent {
       estado: this.empleadoDomain()?.estado!,
       contratoDTO: {
         idContrato: this.empleadoDomain()?.contratoDTO.idContrato!,
-        fechaInicio: this.secondFormGroup.get('fechaInicio')?.value!,
-        fechaFin: this.secondFormGroup.get('fechaFin')?.value!,
+        fechaInicio: this.buildDate(this.secondFormGroup.get('fechaInicio')?.value!),
+        fechaFin: this.buildDate(this.secondFormGroup.get('fechaFin')?.value!),
         tipoContrato: this.secondFormGroup.get('tipoContrato')?.value!
       }
     }
@@ -159,6 +164,16 @@ export class EmpleadoDialogComponent {
           console.log(err)
         },
       });
+    }
+  }
+
+  private buildDate(fecha?: string): string {
+    if(fecha) {
+      // transform date recived
+      return this._dateService.transform(fecha, "yyyy-MM-dd'T'HH:mm:ss", 'es-PE')!;
+    }else {
+      // current date
+      return this._dateService.transform(new Date(), "yyyy-MM-dd'T'HH:mm:ss", 'es-PE')!;
     }
   }
 

@@ -13,9 +13,10 @@ h4 {
   gap: 10px;
   padding: 20px 25px;
   .cabecera {
-    & __titulo {
+    &__titulo {
       font-size: 24px;
       font-weight: 500;
+      color: #673ab7;
     }
   }
   .cuerpo {

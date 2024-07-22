@@ -8,8 +8,8 @@
         <div class="cabecera">
           <img class="cabecera__logo" src="../../../../../assets/images/logo/quevedo-logo.webp" alt="">
           <div class="cabecera__perfil cabecera__perfil--estilo">
-            <h2>Eduardo Flores</h2>
-            <h4>Administrador</h4>
+            <h2>{{usuarioDomain()?.username}}</h2>
+            <h4>{{usuarioDomain()?.rol}}</h4>
           </div>
         </div>
         <div class="cuerpo">
@@ -28,6 +28,10 @@
           <a class="cuerpo__element cuerpo__element--estilo" routerLink="/admin/clientes" routerLinkActive='cuerpo__element--active' [routerLinkActiveOptions]="{exact : true}">
             <mat-icon class="cuerpo__element__icon">work</mat-icon>
             <h3>Clientes</h3>
+          </a>
+          <a class="cuerpo__element cuerpo__element--estilo" routerLink="/admin/ventas" routerLinkActive='cuerpo__element--active' [routerLinkActiveOptions]="{exact : true}">
+            <mat-icon class="cuerpo__element__icon">library_add</mat-icon>
+            <h3>Ventas</h3>
           </a>
         </div>
       </mat-drawer>

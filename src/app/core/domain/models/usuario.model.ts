@@ -7,7 +7,7 @@ export interface IDomainCreateUsuario {
   equipoVenta: number;
   fechaRegistro: string;
   estado: boolean;
-  empleado: IDomainEmpleado;
+  empleadoDTO: IDomainEmpleado;
 }
 
 export interface IDomainUsuario{
@@ -17,5 +17,5 @@ export interface IDomainUsuario{
   equipoVenta: number;
   fechaRegistro: string;
   estado: boolean;
-  empleado: IDomainEmpleado;
+  empleadoDTO: IDomainEmpleado;
 }

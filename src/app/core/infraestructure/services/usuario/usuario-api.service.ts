@@ -14,7 +14,7 @@ import { ResponseDTO } from '../../util/ResponseDTO.interface';
 export class UsuarioApiService implements IUsuarioApiService{
 
   private _http = inject(HttpClient);
-  private readonly API_URL = `${environment.API_URL}/usuarios`;
+  private readonly API_URL = `${environment.API_URL}/api/v1/usuarios`;
 
   readAll(): Observable<IDomainUsuario[]> {
     return this._http.get<ResponseDTO<IApiUsuario[]>>(this.API_URL)

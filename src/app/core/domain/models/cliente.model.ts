@@ -9,7 +9,7 @@ export interface IDomainCreateCliente {
   fechaRegistro: string;
   tipoEstado: string,
   estado: boolean;
-  usuario: IDomainUsuario;
+  usuarioDTO: IDomainUsuario;
 }
 
 export interface IDomainCliente{

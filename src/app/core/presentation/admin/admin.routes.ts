@@ -31,6 +31,11 @@ const admin: Routes = [
         loadComponent: () => import('./modules/cliente/cliente.component'),
         title: 'Inmobiliaria - CLIENTES'
       },
+      {
+        path: 'ventas',
+        loadComponent: () => import('./modules/ventas/ventas.component'),
+        title: 'Inmobiliaria - VENTAS'
+      },
     ]
   }
 ];
