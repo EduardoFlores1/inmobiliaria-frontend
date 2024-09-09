@@ -1,0 +1,67 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID. </th>
+    <td mat-cell *matCellDef="let element"> {{element.idVenta}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="vendedor">
+    <th mat-header-cell *matHeaderCellDef> COD-Vendedor </th>
+    <td mat-cell *matCellDef="let element"> {{element.usuario.username}} </td>
+  </ng-container>
+
+  <!-- Apellido Column -->
+  <ng-container matColumnDef="cliente">
+    <th mat-header-cell *matHeaderCellDef> DNI-Cliente </th>
+    <td mat-cell *matCellDef="let element"> {{element.cliente.dni}} </td>
+  </ng-container>
+
+  <!-- Apellido Column -->
+  <ng-container matColumnDef="telefono">
+    <th mat-header-cell *matHeaderCellDef> Telefono </th>
+    <td mat-cell *matCellDef="let element"> {{element.cliente.telefono}} </td>
+  </ng-container>
+
+  <!-- DNI Column -->
+  <ng-container matColumnDef="manzana">
+    <th mat-header-cell *matHeaderCellDef> Manzana </th>
+    <td mat-cell *matCellDef="let element"> {{element.lote.manzana}} </td>
+  </ng-container>
+
+  <!-- DNI Column -->
+  <ng-container matColumnDef="precio">
+    <th mat-header-cell *matHeaderCellDef> Precio </th>
+    <td mat-cell *matCellDef="let element"> S/. {{element.lote.precio}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="tipoPago">
+    <th mat-header-cell *matHeaderCellDef> Tipo de Pago </th>
+    <td mat-cell *matCellDef="let element">{{element.tipoLote.tipoPago}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td mat-cell *matCellDef="let element"> 
+      <div class="acciones__botones">
+        <button mat-icon-button color="accent" (click)="editItemHandler(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div> 
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <!--Mensaje de no datos-->
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4" style="width: 100%; text-align: center;">No hay datos para mostrar</td>
+  </tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25]" aria-label="Select page of clientes"></mat-paginator>
+

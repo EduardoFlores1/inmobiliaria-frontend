@@ -1,0 +1,14 @@
+<div class="container">
+  <section class="cabecera">
+    <mat-icon class="cabecera__icon" [color]="data.color" [fontIcon]="data.icon"></mat-icon>
+    <h2 class="cabecera__titulo">¿Está Seguro?</h2>
+  </section>
+  <section class="cuerpo">
+    <p class="cuerpo__descripcion">{{data?.descripcion}}</p>
+  </section>
+  <section class="acciones">
+    <button color="warn" mat-raised-button mat-dialog-close>Cancelar</button>
+    <button (click)="actionHandler()" color="primary" mat-raised-button mat-dialog-close>Sí, {{data?.accionTitulo}}
+    </button>
+  </section>
+</div>

@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: aliceblue;
+  height: 100%;
+  gap: 70px;
+
+  .progressBar {
+    height: 8px;
+  }
+  .card {
+    max-width: 350px;
+    height: 75vh;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 30px;
+
+      &__cabecera {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        height: 35%;
+
+        &__logo {
+          height: 50%;
+          width: auto;
+          font-size: 84px;
+          color: #673ab7;
+        }
+      }
+
+      &__cuerpo {
+        margin-top: 15%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        form {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+        }
+      }
+    
+  }
+}

@@ -1,0 +1,96 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  h2, h3, h4 {
+    margin: 0;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  
+  .header {
+    height: 10%;
+  }
+
+  .sidenav {
+    height: 89%;
+  }
+  .sidenav_container {
+    width: 100%;
+    height: 100%;
+
+    .panel {
+      width: 270px;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+
+      .cabecera {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &__logo {
+          width: 50%;
+          border-radius: 50%;
+          margin-bottom: 15px;
+        }
+        &__perfil {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          &--estilo {
+            padding: 8px 0px;
+            border-radius: 10%;
+            background-color: rgb(228, 228, 228);
+          }
+        }
+      }
+
+      .cuerpo {
+
+        margin-top: 40px;
+
+        &__element {
+          display: flex;
+          align-items: center;
+          &__icon {
+            font-size: 24px;
+            margin-right: 20px;
+          }
+          &--estilo {
+            padding: 10px 0px;
+            border-radius: 5%;
+            padding-left: 10px;
+            color: black;
+            text-decoration: none;
+          }
+          &--estilo:hover {
+            cursor: pointer;
+            background-color: rgb(228, 228, 228);
+          }
+          &--active {
+            background-color: rgb(228, 228, 228);
+            color: #673ab7;
+          }
+        }
+      }
+
+    }
+  }
+  
+  mat-drawer-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,45 @@
+h1,
+h2,
+h3,
+h4 {
+  margin: 0px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .progressBar {
+    height: 8px;
+  }
+
+  .cabecera {
+    &__titulo {
+      font-size: 32px;
+      font-weight: 500;
+    }
+    width: 90%;
+    margin: 0px auto;
+  }
+  .busqueda {
+    display: flex;
+    flex-direction: column;
+    &__input {
+      width: 40%;
+    }
+    width: 90%;
+    margin: 0px auto;
+  }
+  .acciones {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0px auto;
+  }
+  .tabla {
+    width: 90%;
+    margin: 0px auto;
+  }
+}

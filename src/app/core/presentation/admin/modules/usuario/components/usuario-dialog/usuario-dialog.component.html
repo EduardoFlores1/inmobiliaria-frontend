@@ -1,0 +1,50 @@
+<div class="container">
+  <section class="cabecera">
+    <h1 class="cabecera__titulo">{{data?.titulo}}</h1>
+  </section>
+  <section class="cuerpo">
+    <form class="fields" [formGroup]="formGroup">
+      <mat-form-field class="fields__usernamee" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="ingrese el username" formControlName="username">
+      </mat-form-field>
+
+      <mat-form-field class="fields__password" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="ingrese la password" formControlName="password">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="fields__rol">
+        <mat-label>Defina El Rol</mat-label>
+        <mat-select formControlName="rol">
+          <mat-option value="ADMINISTRADOR">Administrador</mat-option>
+          <mat-option value="SUPERVISOR">Supervisor</mat-option>
+          <mat-option value="VENDEDOR">Vendedor</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="fields__equipoVenta">
+        <mat-label>Equipo de Venta</mat-label>
+        <mat-select formControlName="equipoVenta">
+          <mat-option value=1>1</mat-option>
+          <mat-option value=2>2</mat-option>
+          <mat-option value=3>3</mat-option>
+          <mat-option value=4>4</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="fields__estado">
+        <mat-label>Defina El Estado</mat-label>
+        <mat-select formControlName="estado">
+          <mat-option value="Activo">Activo</mat-option>
+          <mat-option value="Inactivo">Inactivo</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </section>
+
+  <section class="footer">
+    <button mat-dialog-close mat-raised-button color="warn" matStepperNext>Cancelar</button>
+    <button [disabled]="formGroup.invalid" (click)="saveHandler()" mat-raised-button color="primary" matStepperNext>{{data?.accionTitulo}}</button>
+  </section>
+</div>

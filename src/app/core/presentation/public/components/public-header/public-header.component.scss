@@ -1,0 +1,14 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.menus {
+  display: flex;
+  flex-direction: row;
+  gap: 55px;
+
+  .menu:hover {
+    color: rgb(124, 124, 124);
+    cursor: pointer;
+  }
+}

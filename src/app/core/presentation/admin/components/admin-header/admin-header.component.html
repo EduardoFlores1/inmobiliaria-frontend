@@ -1,0 +1,18 @@
+<mat-toolbar class="header" color="primary">
+  <button (click)="openSidenav()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Admin Panel</span>
+  <span class="example-spacer"></span>
+
+  <button mat-icon-button [matMenuTriggerFor]="beforeMenu" class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before">
+    <button mat-menu-item (click)="cerrarSesion()">
+      <mat-icon>exit_to_app</mat-icon>
+      Cerrar Sesión
+    </button>
+  </mat-menu>
+
+</mat-toolbar>

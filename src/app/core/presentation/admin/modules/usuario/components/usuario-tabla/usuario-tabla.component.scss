@@ -1,0 +1,24 @@
+table {
+  width: 100%;
+}
+
+.estado {
+  padding: 5px 10px;
+  color: white;
+}
+
+.estado-activo {
+  border-radius: 4px;
+  background-color: green;
+  
+}
+.estado-inactivo {
+  border-radius: 4px;
+  background-color: red;
+}
+
+.acciones__botones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

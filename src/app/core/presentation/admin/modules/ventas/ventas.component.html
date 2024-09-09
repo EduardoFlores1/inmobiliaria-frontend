@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="progressBar">
+    @if (showProgressBar()) {
+    <app-progress-bar [mode]="modeProgressBar()" />
+    }
+  </div>
+  <section class="cabecera">
+    <h1 class="cabecera__titulo">Gestion de Ventas:</h1>
+  </section>
+  <section class="busqueda">
+    <span>Busque una venta:</span>
+    <mat-form-field class="busqueda__input">
+      <mat-label>Filtrar</mat-label>
+      <input matInput placeholder="Ex. ium" #input>
+    </mat-form-field>
+  </section>
+  <section class="acciones">
+    <button (click)="agregarItem()" mat-raised-button color="primary">
+      <mat-icon>add</mat-icon>Agregar
+    </button>
+    <button (click)="agregarItem()" mat-raised-button color="accent">
+      <mat-icon>description</mat-icon>Reporte
+    </button>
+  </section>
+  <section class="tabla">
+    <app-venta-tabla [ventas]="ventas()" (editItem)="editItemHandler($event)" 
+    />
+  </section>
+</div>

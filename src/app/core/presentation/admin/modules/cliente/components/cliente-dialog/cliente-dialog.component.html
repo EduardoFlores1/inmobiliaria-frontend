@@ -1,0 +1,58 @@
+<div class="container">
+  <section class="cabecera">
+    <h1 class="cabecera__titulo">{{data?.titulo}}</h1>
+  </section>
+  
+  <section class="cuerpo">
+    <form class="fields" [formGroup]="formGroup">
+      <mat-form-field class="fields__nombre" appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="ingrese el nombre" formControlName="nombre">
+      </mat-form-field>
+
+      <mat-form-field class="fields__apellido" appearance="outline">
+        <mat-label>Apellido</mat-label>
+        <input matInput placeholder="ingrese el apellido" formControlName="apellido">
+      </mat-form-field>
+
+      <mat-form-field class="fields__dni" appearance="outline">
+        <mat-label>DNI</mat-label>
+        <input matInput placeholder="ingrese su DNI" formControlName="dni">
+      </mat-form-field>
+
+      <mat-form-field class="fields__telefono" appearance="outline">
+        <mat-label>Teléfono</mat-label>
+        <input matInput placeholder="ingrese el telefono" formControlName="telefono">
+      </mat-form-field>
+
+      <mat-form-field class="fields__email" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="ingrese el Email" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="fields__tipoEstado">
+        <mat-label>Tipo Estado</mat-label>
+        <mat-select formControlName="tipoEstado">
+          <mat-option value="Interesado">Interesado</mat-option>
+          <mat-option value="No Interesado">No Interesado</mat-option>
+          <mat-option value="No contesto">No contesto</mat-option>
+          <mat-option value="Numero Incorrecto">Numero Incorrecto</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="fields__estado">
+        <mat-label>Defina El Estado</mat-label>
+        <mat-select formControlName="estado">
+          <mat-option value="Activo">Activo</mat-option>
+          <mat-option value="Inactivo">Inactivo</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </form>
+  </section>
+
+  <section class="footer">
+    <button mat-dialog-close mat-raised-button color="warn" matStepperNext>Cancelar</button>
+    <button [disabled]="formGroup.invalid" (click)="saveHandler()" mat-raised-button color="primary" matStepperNext>{{data?.accionTitulo}}</button>
+  </section>
+</div>

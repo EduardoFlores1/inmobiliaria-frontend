@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="progressBar">
+    @if (showProgressBar()) {
+    <app-progress-bar [mode]="modeProgressBar()" />
+    }
+  </div>
+  <section class="cabecera">
+    <h1 class="cabecera__titulo">Gestion de Empleados:</h1>
+  </section>
+  <section class="busqueda">
+    <span>Busque un empleado:</span>
+    <mat-form-field class="busqueda__input">
+      <mat-label>Filtrar</mat-label>
+      <input matInput placeholder="Ex. ium" #input>
+    </mat-form-field>
+  </section>
+  <section class="acciones">
+    <button (click)="agregarItem()" mat-raised-button color="primary">
+      <mat-icon>add</mat-icon>Agregar
+    </button>
+    <button mat-raised-button color="accent" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon>description</mat-icon>Reporte
+</button>
+
+  </section>
+  <section class="tabla">
+    <app-empleado-tabla [empleados]="empleados()" (editItem)="editItemHandler($event)" 
+    (deleteItem)="deleteItemHandler($event)" />
+  </section>
+</div>
+
+<mat-menu #menu="matMenu" yPosition="above">
+  <button mat-menu-item>
+    <mat-icon>library_books</mat-icon>
+    <span>EXCEL</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>picture_as_pdf</mat-icon>
+    <span>PDF</span>
+  </button>
+</mat-menu>

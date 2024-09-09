@@ -1,0 +1,104 @@
+<div class="container">
+  <section class="cabecera">
+    <h1 class="cabecera__titulo">{{data?.titulo}}</h1>
+  </section>
+  <section class="cuerpo">
+
+    <mat-stepper linear #stepper>
+      <mat-step [stepControl]="firstFormGroup" editable="true">
+        <form class="fields1" [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>EMPLEADO</ng-template>
+        
+            <mat-form-field class="fields1__nombre" appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input matInput placeholder="ingrese el nombre" formControlName="nombre">
+            </mat-form-field>
+            <mat-form-field class="fields1__apellido" appearance="outline">
+              <mat-label>Apellido</mat-label>
+              <input matInput placeholder="ingrese el apellido" formControlName="apellido">
+            </mat-form-field>
+      
+            <mat-form-field class="fields1__email" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="ingrese el email" formControlName="email">
+            </mat-form-field>
+            <mat-form-field class="fields1__dni" appearance="outline">
+              <mat-label>DNI</mat-label>
+              <input matInput  #inputDni placeholder="ingrese el DNI" formControlName="dni">
+              <mat-hint align="end">{{inputDni.value.length}}/8</mat-hint>
+            </mat-form-field>
+      
+            <mat-form-field class="fields1__telefono" appearance="outline">
+              <mat-label>Telefono</mat-label>
+              <input matInput  #inputTelf  placeholder="ingrese su telefono" formControlName="telefono">
+              <mat-hint align="end">{{inputTelf.value.length}}/9</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="fields1__direccion" appearance="outline">
+              <mat-label>Dirección</mat-label>
+              <input matInput placeholder="ingrese su direccion" formControlName="direccion">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="fields1__cargo">
+              <mat-label>Defina Cargo</mat-label>
+              <mat-select formControlName="cargo">
+                <mat-option value="Administrador">Administrador</mat-option>
+                <mat-option value="Vendedor">Vendedor</mat-option>
+                <mat-option value="Secretario">Secretario</mat-option>
+              </mat-select>
+            </mat-form-field>
+        </form>
+        <div>
+          <button mat-raised-button color="accent" matStepperNext>Siguiente</button>
+        </div>
+      </mat-step>
+      <!--SECOND STEP-->
+      <mat-step [stepControl]="secondFormGroup" editable="true">
+        <form class="fields2" [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>CONTRATO</ng-template>
+
+          <mat-form-field class="fields2__fInicio" appearance="outline">
+            <mat-label>Fecha de Inicio</mat-label>
+            <input matInput [matDatepicker]="datepicker" formControlName="fechaInicio">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="accent" matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="fields2__fFin" appearance="outline">
+            <mat-label>Fecha de Fin</mat-label>
+            <input matInput [matDatepicker]="datepicker2" formControlName="fechaFin">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="datepicker2"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker2>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="accent" matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="fields2__tipoContrato">
+            <mat-label>Tipo Contrato</mat-label>
+            <mat-select formControlName="tipoContrato">
+              <mat-option value="Tiempo Completo">Tiempo Completo</mat-option>
+              <mat-option value="Medio Tiempo">Medio Tiempo</mat-option>
+              <mat-option value="Practicante">Practicante</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </form>
+        <div class="cuerpo__buttons">
+          <button mat-raised-button color="accent" matStepperPrevious>Atras</button>
+          <button (click)="saveHandler()" [disabled]="firstFormGroup.invalid || secondFormGroup.invalid" 
+            mat-raised-button color="primary" matStepperNext>{{data?.accionTitulo}}</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+
+    
+  </section>
+</div>

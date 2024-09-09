@@ -1,0 +1,65 @@
+<div class="container">
+  <section class="cabecera">
+    <h1 class="cabecera__titulo">{{data?.titulo}}</h1>
+  </section>
+
+  <section class="datos">
+    <div class="clienteDatos">
+      <h3 class="a"><span>Nombres:</span> {{cliente()?.nombre}} {{cliente()?.apellido}}</h3>
+      <h3 class="b"><span>DNI:</span> {{cliente()?.dni}}</h3>
+    </div>
+    <div class="loteDatos">
+      <h3 class="a"><span>Manzana:</span> {{lote()?.manzana}}</h3>
+      <h3 class="b"><span>Precio: </span>S/. {{lote()?.precio}}</h3>
+    </div>
+    <div class="tipoLoteDatos">
+      <h3 class="a"><span>Pago:</span> {{tipoLote()?.tipoPago}}</h3>
+      <h3 class="b"><span>Descripcion:</span> {{tipoLote()?.descripcion}}</h3>
+    </div>
+  </section>
+
+  <section class="cuerpo">
+    <form class="fields" [formGroup]="formGroup">
+
+      <mat-form-field appearance="outline" class="fields__cliente">
+        <mat-label>Cliente</mat-label>
+        <mat-select formControlName="cliente">
+          @for (cli of listaClientes(); track $index) {
+            <mat-option (click)="obtCliente(cli)" [value]="cli.dni">{{cli.dni}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="fields__lote">
+        <mat-label>Lote Disponible</mat-label>
+        <mat-select formControlName="lote">
+          @for (lot of listaLotes(); track $index) {
+            <mat-option (click)="obtLote(lot)" [value]="lot.manzana">{{lot.manzana}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="fields__tipoLote">
+        <mat-label>Tipo Lote</mat-label>
+        <mat-select formControlName="tipoLote">
+          @for (tip of listaTipoLote(); track $index) {
+            <mat-option (click)="obtTipoLote(tip)" [value]="tip.descripcion">{{tip.descripcion}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="fields__detalles">
+        <mat-label>Detalles</mat-label>
+        <textarea matInput formControlName="detalles"></textarea>
+      </mat-form-field>
+
+
+
+    </form>
+  </section>
+
+  <section class="footer">
+    <button mat-raised-button color="warn" matStepperNext mat-dialog-close>Cancelar</button>
+    <button [disabled]="formGroup.invalid" (click)="saveHandler()" mat-raised-button color="primary" matStepperNext>{{data?.accionTitulo}}</button>
+  </section>
+</div>
