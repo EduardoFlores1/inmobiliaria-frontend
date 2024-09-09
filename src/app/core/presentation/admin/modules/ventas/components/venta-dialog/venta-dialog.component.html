@@ -60,6 +60,6 @@
 
   <section class="footer">
     <button mat-raised-button color="warn" matStepperNext mat-dialog-close>Cancelar</button>
-    <button (click)="saveHandler()" mat-raised-button color="primary" matStepperNext>{{data?.accionTitulo}}</button>
+    <button [disabled]="formGroup.invalid" (click)="saveHandler()" mat-raised-button color="primary" matStepperNext>{{data?.accionTitulo}}</button>
   </section>
 </div>

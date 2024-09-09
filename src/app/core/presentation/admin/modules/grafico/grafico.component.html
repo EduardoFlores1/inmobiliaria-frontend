@@ -1,1 +1,30 @@
-<p>grafico works!</p>
+<div class="container">
+  <div class="cabecera">
+    <div class="fila1">
+      <mat-card class="card">
+        <h3>Total de Ventas: {{totalVentas()}}</h3>
+      </mat-card>
+      <mat-card class="card">
+        <h3>Ventas Al contado: {{totalContado()}}</h3>
+      </mat-card>
+    </div>
+    <div class="fila2">
+      <mat-card class="card">
+        <h3>Ventas a Crédito: {{totalCredito()}}</h3>
+      </mat-card>
+      <mat-card class="card">
+        <h3>Total de Clientes: {{totalClientes()}}</h3>
+      </mat-card>
+    </div>
+  </div>
+  <div class="cuerpo">
+    <div class="ventas">
+      <h2>Ventas Mensuales</h2>
+      <app-ventas-barchart />
+    </div>
+    <div class="clientes">
+      <h2>Estado de Clientes</h2>
+      <app-clientes-circularchart />
+    </div>
+  </div>
+</div>
